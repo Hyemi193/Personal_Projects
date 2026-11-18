@@ -1,5 +1,5 @@
-# 신용카드 사용자 신용도 예측
-
+<h1 align = "center"> 신용카드 사용자 신용도 예측</h1>
+          
 신용카드 사용자의 인적·소득·카드 정보를 바탕으로 신용도 등급(credit 0 / 1 / 2)을 확률로 예측하는 다중 분류 프로젝트
 
 - 주 평가지표 : **log-loss** (예측 확률의 정확도)
@@ -13,7 +13,7 @@
 
 ### 데이터
 | 항목 | 내용 |
-| --- | --- |
+| :---: | :---: |
 | 원본 | 26,457행 X 20컬럼 (train.csv) |
 | 정제 후 | 24,823행 (완전 중복 1,634행 제거) |
 | 고유 사용자 | 8,606명
@@ -21,7 +21,7 @@
 
 ### 타깃 분포 (원본)
 | credit | 건수 | 비율 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | 0 | 3,222 | 12.2% |
 | 1 | 6,267 | 23.7% |
 | 2 | 16,968 | 64.1% |
@@ -117,7 +117,7 @@ credit 2가 전체의 약 64%를 차지하는 **불균형 데이터**
 
 ### 결과 (log-loss)
 | 모델 | 클래스 가중치 O | 클래스 가중치 X|
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | Naive 전부 credit 2) | 12.9236 | - |
 | Logistic Regression | 1.0780 | 0.8675 |
 | XGBoost | 1.0668 | 1.0850 |
@@ -139,7 +139,7 @@ Permutation이나 IV 하나에서만 낮게 나온 변수(gender, car 등)는 �
 
 ## 9. 선별 후 기본 모델 재학습 및 평가
 | 모델 | 선별 전 | 선별 후 |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | Logistic Regression | 0.8675 | 0.8670 |
 | XGBoost | 1.0850 | 1.0817 |
 | LightGBM | 0.9286 | 0.9283 |
@@ -155,7 +155,7 @@ Permutation이나 IV 하나에서만 낮게 나온 변수(gender, car 등)는 �
 
 ### 튜닝 결과 (OOF)
 | 모델 | 기본 모델 log-loss | 튜닝 후 log-loss | macro-F1 | accuracy |
-| --- | --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: | :---: |
 | XGBoost | 1.0817 | **0.8074** | 0.3829 | 0.6914 |
 | LightGBM | 0.9283 | 0.8114 | 0.3859 | 0.6912 |
 | CatBoost | 0.8388 | 0.8094 | 0.3921 | 0.6912 |
@@ -165,7 +165,7 @@ Permutation이나 IV 하나에서만 낮게 나온 변수(gender, car 등)는 �
 
 ### 앙상블 (Soft Voting)
 |     | log-loss | macro-F1 | accuracy |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | Voting Ensemble | 0.8086 | 0.3869 | 0.6911
 
 세 모델의 예측이 서로 비슷해서 더 좋은 성능은 얻지 못함
@@ -199,13 +199,14 @@ Permutation이나 IV 하나에서만 낮게 나온 변수(gender, car 등)는 �
 | 구분 | 사용 도구 |
 | --- | --- |
 | 언어 / 환경 | Python, Jupyter Notebook, Anaconda |
-| 데이터베이스 | MySQL, SQLAlchemy, PyMYSQL |
+| 데이터베이스 | MySQL, SQLAlchemy |
 | 데이터 처리 | Pnadas, Numpy |
-| 통계 검정 | Scipy, statsmodels |
+| 통계 검정 | Scipy |
 | 모델링 | Scikit-learn, XGBoost, LightGBM, CatBoost |
 | 튜닝 | Optuna |
-| 해석 | SHAP |
-| 시각화 | Matplotlin, Seaborn |
+| 해석 | SHAP, statsmodels |
+| 모델 저장 | joblib |
+| 시각화 | Matplotlib, seaborn |
 
 ## 12. 폴더 구조
 ```
